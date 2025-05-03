@@ -23,7 +23,9 @@ const mainRoutes = require('./routes/main')
 app.use('/api',APIRoutes)
 app.use('/',mainRoutes)
 
-app.listen(process.env.PORT || PORT)
+app.listen(process.env.PORT || PORT, '0.0.0.0', () => {
+    console.log(`Server running on http://0.0.0.0:${PORT}`);
+});
 
 
 

@@ -656,8 +656,8 @@ function addTheIcedWord(){
 
 
 
-let heroku = 'https://coffee-trainer.herokuapp.com/api/coredrinks'
-let local = 'http://localhost:8000/api/coredrinks'
+let heroku = '/api/coredrinks'
+let local = '/api/coredrinks'
 
 const statusLight = document.querySelector('.statusLight')
 async function apiRequest(url){  //Calls the API and brings drink data to the 
@@ -705,7 +705,7 @@ function shuffle(array) {
 
 async function allcustom(){
     try{
-        const response = await fetch('http://localhost:8000/api/allnames')
+        const response = await fetch('api/allnames')
         const data = await response.json()
         console.log(data)
     }
@@ -1409,7 +1409,7 @@ function errorMessage(message,color){
 
 let postUrl
 let production = 'dev'
-let uhhh = "https://coffee-trainer.herokuapp.com/menu"
+let uhhh = "/menu"
 function dynamicURL(word){
     let loc = window.location.href.includes('coffee')
     if(loc){
@@ -1421,22 +1421,22 @@ function dynamicURL(word){
 }
 dynamicURL()
 if(production === 'dev'){
-    localStorage.setItem('LastClicked',["http://localhost:8000/api/customizations",local,'http://localhost:8000/api/customers','https://localhost:8000/order'])
+    localStorage.setItem('LastClicked',["/api/customizations",local,'/api/customers','/order'])
     removeAllChildNodes(document.querySelector('.items'))
     removeAllChildNodes(document.querySelector('.drinkType'))
-    apiRequestForCustomizations("http://localhost:8000/api/customizations")
+    apiRequestForCustomizations("/api/customizations")
     apiRequest(local)
-    apiRequestCustomer('http://localhost:8000/api/customers')
-    postUrl ='http://localhost:8000/order'
+    apiRequestCustomer('/api/customers')
+    postUrl ='/order'
 }else
 if(production=== 'live'){
-    localStorage.setItem('LastClicked',["https://coffee-trainer.herokuapp.com/api/customizations",heroku,"https://coffee-trainer.herokuapp.com/api/customers,'https://coffee-trainer.herokuapp.com/order'"])
+    localStorage.setItem('LastClicked',["/api/customizations",heroku,"/api/customers,'/order'"])
     removeAllChildNodes(document.querySelector('.items'))
     removeAllChildNodes(document.querySelector('.drinkType'))
-    apiRequestForCustomizations("https://coffee-trainer.herokuapp.com/api/customizations")
-    apiRequestCustomer('https://coffee-trainer.herokuapp.com/api/customers')
+    apiRequestForCustomizations("/api/customizations")
+    apiRequestCustomer('/api/customers')
     apiRequest(heroku)
-    postUrl ='https://coffee-trainer.herokuapp.com/order'
+    postUrl ='/order'
 }
 
 document.querySelectorAll('.findOrder').forEach((elem)=>{
